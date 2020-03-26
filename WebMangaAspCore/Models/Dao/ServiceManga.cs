@@ -20,7 +20,7 @@ namespace WebmangaAspCore.Models.Dao
             Serreurs er = new Serreurs("Erreur sur lecture des Mangas.", "Manga.getManags()");
             try
             {
-                String mysql = "Select  id_manga,lib_genre,nom_dessinateur,nom_scenariste,dateParution,prix,couverture ";
+                String mysql = "Select  id_manga,titre,lib_genre,nom_dessinateur,nom_scenariste,dateParution,prix,couverture ";
                 mysql += " from Manga join genre on   manga.id_genre  = genre.id_genre ";
                 mysql += " join   dessinateur  on  manga.id_dessinateur  =  dessinateur.id_dessinateur";
                 mysql += " join   scenariste   on  manga.id_scenariste   = scenariste.id_scenariste ";
@@ -99,7 +99,45 @@ namespace WebmangaAspCore.Models.Dao
             throw erreur;
         }
     }
-        
 
+    public static void AddManga(Manga unM)
+    {
+        Serreurs er = new Serreurs("Erreur sur l'ajout d'un manga.", "ServiceManga.add()");
+            String requete = "INSERT INTO Manga (id_dessinateur, id_scenariste, prix, titre, dateParution, couverture, id_genre) VALUES(" +
+                                    unM.Id_dessinateur + "," +
+                                    unM.Id_scenariste + ", " +
+                                    unM.Prix + ", '" +
+                                    unM.Titre + "', '" +
+                                    unM.DateParution.ToString("yyyy-MM-dd") + "', '" +
+                                    //"2012-06-05,"+
+                                    unM.Couverture.ToString() + "', " +
+                                    unM.Id_genre + ")";
+
+        try
+        {
+            DBInterface.Execute_Transaction(requete);
+        }
+        catch (MonException erreur)
+        {
+            throw erreur;
+        }
+
+
+    }
+
+        public static void SupprimerManga(string id)
+        {
+            Serreurs er = new Serreurs("Erreur sur la  suppression d'un manga.", "ServiceManga.supprimer()");
+            String requete = "DELETE FROM Manga WHERE id_manga = " + id;
+
+            try
+            {
+                DBInterface.Execute_Transaction(requete);
+            }
+            catch (MonException erreur)
+            {
+                throw erreur;
+            }
+        }
     }
 }

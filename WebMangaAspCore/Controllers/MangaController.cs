@@ -60,6 +60,19 @@ namespace WebmangaAspCore.Controllers
             }
         }
 
+        public void Supprimer(String id)
+        {
+            try
+            {
+                ServiceManga.SupprimerManga(id);
+                Response.Redirect("/Manga/Index");
+                
+            }
+            catch (MonException e)
+            {
+                //return StatusCode(418);
+            }
+        }
 
     }
 }
