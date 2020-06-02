@@ -51,12 +51,15 @@
                     </div>
                 </div>
 
+                @if (ViewData["Role"].Equals("admin"))
+                {
                 <div class="form-group">
                     <label class="control-label col-md-2">Couverture</label>
                     <div class="col-md-10">
-                        <input name="Couverture" type="text" class="form-control" value="@(@Model.Couverture)" id="Couverture" />
+                        <input name="Couverture" type="file" class="form-control" value="@(@Model.Couverture)" id="Couverture" />
                     </div>
                 </div>
+                }
 
                 <div class="form-group">
                     <label class="control-label col-md-2">Date parution</label>

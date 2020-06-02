@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebmangaAspCore.Models.MesExceptions;
 using WebmangaAspCore.Models.Metier;
 using WebmangaAspCore.Models.Dao;
+using Microsoft.AspNetCore.Http;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

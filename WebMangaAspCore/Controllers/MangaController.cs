@@ -16,19 +16,26 @@ namespace WebmangaAspCore.Controllers
         // GET: Client
         public ActionResult Index()
         {
-            System.Data.DataTable mesMangas = null;
-
-            try
+            if (HttpContext.Session.GetString("Pseudo") != null)
             {
+                System.Data.DataTable mesMangas = null;
 
-                mesMangas = ServiceManga.GetTousLesManga();
+                try
+                {
+
+                    mesMangas = ServiceManga.GetTousLesManga();
+                }
+                catch (MonException e)
+                {
+                    ModelState.AddModelError("Erreur", "Erreur lors de la récupération des clients : " + e.Message);
+                }
+
+                return View(mesMangas);
             }
-            catch (MonException e)
+            else
             {
-                ModelState.AddModelError("Erreur", "Erreur lors de la récupération des clients : " + e.Message);
+                return RedirectToAction("Index", "Connexion");
             }
-
-            return View(mesMangas);
         }
 
         // GET: Commande/Edit/5
@@ -38,6 +45,7 @@ namespace WebmangaAspCore.Controllers
             try
             {
                 unManga = ServiceManga.GetunManga(id);
+                ViewData["Role"] = HttpContext.Session.GetString("Role");
                 return View(unManga);
             }
             catch (MonException e)

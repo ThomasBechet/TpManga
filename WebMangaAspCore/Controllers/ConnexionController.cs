@@ -52,7 +52,10 @@ namespace WebmangaAspCore.Controllers
                             }
                             else
                             {
-
+                                HttpContext.Session.SetString("Pseudo", unUtilisateur.NomUtil);
+                                HttpContext.Session.SetString("Role", unUtilisateur.Role);
+                                Utilisateur.SetConnected(true);
+                                return RedirectToAction("Index","Home");
                             }
                         }
                         catch (Exception e)
@@ -72,13 +75,19 @@ namespace WebmangaAspCore.Controllers
                     ModelState.AddModelError("Erreur", "Erreur lors de l'authentification : " + e.Message);
                     return RedirectToAction("Index", "Connexion");
                 }
-                return RedirectToAction("Index", "Home");
             }
             catch (MonException e)
             {
                 ModelState.AddModelError("Erreur", "Erreur lors de l'authentification : " + e.Message);
                 return RedirectToAction("Index", "Connexion");
             }
+        }
+
+        public ActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            Utilisateur.SetConnected(false);
+            return RedirectToAction("Index", "Connexion");
         }
     }
 }

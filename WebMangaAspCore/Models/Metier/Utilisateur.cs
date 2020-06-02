@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,6 +8,17 @@ namespace WebmangaAspCore.Models.Metier
 {
     public class Utilisateur
     {
+        private static bool _IsConnected = false;
+
+        public static void SetConnected(bool toggle)
+        {
+            Utilisateur._IsConnected = toggle;
+        }
+
+        public static bool IsConnected()
+        {
+            return Utilisateur._IsConnected;
+        }
 
         private int numUtil;
         private String nomUtil;

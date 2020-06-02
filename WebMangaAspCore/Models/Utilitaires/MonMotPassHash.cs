@@ -65,6 +65,7 @@ namespace WebmangaAspCore.Models.Utilitaires
         {
 
             byte[] pwdHash = PasswordHashe(pwd, salt);
+            String pwdsash = BytesToString(pwdHash);
             int i = 0;
             bool egal = true;
             while (i < pwdHash.Length && egal)

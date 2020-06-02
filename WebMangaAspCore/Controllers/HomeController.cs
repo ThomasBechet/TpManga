@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebmangaAspCore.Models;
+using WebmangaAspCore.Models.Metier;
 
 namespace WebmangaAspCore.Controllers
 {
@@ -20,6 +22,7 @@ namespace WebmangaAspCore.Controllers
 
         public IActionResult Index()
         {
+            ViewData["Nom"] = HttpContext.Session.GetString("Pseudo");
             return View();
         }
 
