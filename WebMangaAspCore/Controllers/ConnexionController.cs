@@ -55,6 +55,7 @@ namespace WebmangaAspCore.Controllers
                                 HttpContext.Session.SetString("Pseudo", unUtilisateur.NomUtil);
                                 HttpContext.Session.SetString("Role", unUtilisateur.Role);
                                 Utilisateur.SetConnected(true);
+                                Utilisateur.SetAdmin(unUtilisateur.Role.Equals("admin"));
                                 return RedirectToAction("Index","Home");
                             }
                         }
@@ -87,6 +88,7 @@ namespace WebmangaAspCore.Controllers
         {
             HttpContext.Session.Clear();
             Utilisateur.SetConnected(false);
+            Utilisateur.SetAdmin(false);
             return RedirectToAction("Index", "Connexion");
         }
     }

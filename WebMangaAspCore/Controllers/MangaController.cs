@@ -16,7 +16,7 @@ namespace WebmangaAspCore.Controllers
         // GET: Client
         public ActionResult Index()
         {
-            if (HttpContext.Session.GetString("Pseudo") != null)
+            if (Utilisateur.IsConnected())
             {
                 System.Data.DataTable mesMangas = null;
 
@@ -46,6 +46,7 @@ namespace WebmangaAspCore.Controllers
             {
                 unManga = ServiceManga.GetunManga(id);
                 ViewData["Role"] = HttpContext.Session.GetString("Role");
+
                 return View(unManga);
             }
             catch (MonException e)
@@ -59,8 +60,14 @@ namespace WebmangaAspCore.Controllers
         {
             try
             {
+                
+                unM.Id_dessinateur = int.Parse(Request.Form["Id_dessinateur"].ToString());
+                unM.Id_scenariste = int.Parse(Request.Form["Id_scenariste"].ToString());
+                unM.Id_genre = int.Parse(Request.Form["Id_genre"].ToString());
+
                 ServiceManga.UpdateManga(unM);
-                return View(unM);
+
+                return RedirectToAction("Index", "Manga");
             }
             catch (MonException e)
             {

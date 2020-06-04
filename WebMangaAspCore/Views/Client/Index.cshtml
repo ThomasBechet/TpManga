@@ -12,14 +12,12 @@
         <form asp-action="Ajouter">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Id_dessinateur" class="control-label"></label>
-                <input asp-for="Id_dessinateur" class="form-control" />
-                <span asp-validation-for="Id_dessinateur" class="text-danger"></span>
+                <label class="control-label">Dessinateur</label>
+                @Html.DropDownList("Id_dessinateur", Dessinateur.GetList(), null, new { @class = "form-control" })
             </div>
             <div class="form-group">
-                <label asp-for="Id_scenariste" class="control-label"></label>
-                <input asp-for="Id_scenariste" class="form-control" />
-                <span asp-validation-for="Id_scenariste" class="text-danger"></span>
+                <label class="control-label">Scenariste</label>
+                @Html.DropDownList("Id_scenariste", Scenariste.GetList(), null, new { @class = "form-control" })
             </div>
             <div class="form-group">
                 <label asp-for="Prix" class="control-label"></label>
@@ -37,9 +35,8 @@
                 <span asp-validation-for="Couverture" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Id_genre" class="control-label"></label>
-                <input asp-for="Id_genre" class="form-control" />
-                <span asp-validation-for="Id_genre" class="text-danger"></span>
+                <label class="control-label">Genre</label>
+                @Html.DropDownList("Id_genre", Genre.GetList(), null, new { @class = "form-control" })
             </div>
             <div class="form-group">
                 <label asp-for="DateParution" class="control-label"></label>

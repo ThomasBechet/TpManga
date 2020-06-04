@@ -9,6 +9,7 @@ namespace WebmangaAspCore.Models.Metier
     public class Utilisateur
     {
         private static bool _IsConnected = false;
+        private static bool _IsAdmin = false;
 
         public static void SetConnected(bool toggle)
         {
@@ -18,6 +19,16 @@ namespace WebmangaAspCore.Models.Metier
         public static bool IsConnected()
         {
             return Utilisateur._IsConnected;
+        }
+
+        public static bool IsAdmin()
+        {
+            return Utilisateur._IsAdmin;
+        }
+
+        public static void SetAdmin(bool toggle)
+        {
+            Utilisateur._IsAdmin = toggle;
         }
 
         private int numUtil;
