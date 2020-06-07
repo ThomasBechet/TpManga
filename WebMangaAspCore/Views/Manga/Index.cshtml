@@ -60,7 +60,8 @@
                 </td>
                 <td style="text-align:center;">
                     <span>
-                        @Html.ActionLink("  ", "Supprimer", "Manga", new { id = dataRow[0] }, new { @class = "btn btn-default btn-primary glyphicon glyphicon glyphicon-remove" })
+                        <!--<a class="btn btn-default btn-primary glyphicon glyphicon glyphicon-remove" href="/Manga/Supprimer/@dataRow[0]"></a>-->
+                        <button class="btn btn-default btn-primary glyphicon glyphicon glyphicon-remove" onclick="supprimer(@dataRow[0])"></button>
                     </span>
                 </td>
             </tr>
@@ -74,3 +75,14 @@
         </div>
     </div>
 }
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+
+    function supprimer(value) {
+        let r = confirm("Validez-vous la suppression ?");
+        if (r == true) {
+            window.location = "/Manga/Supprimer/"+value;
+        }
+    }
+
+</script>

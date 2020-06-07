@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using WebmangaAspCore.Models.Dao;
 
 namespace WebmangaAspCore.Models.Metier
 {
@@ -12,6 +16,24 @@ namespace WebmangaAspCore.Models.Metier
         private DateTime dateParution;
         private String couverture;
         private int id_genre;
+
+        public static System.Collections.Generic.List<SelectListItem> GetCouvertures()
+        {
+            System.Collections.Generic.List<SelectListItem> listItems = new List<SelectListItem>();
+            foreach (string imageFileName in System.IO.Directory.GetFiles(System.IO.Path.GetFullPath("./wwwroot/images")))
+            {
+                if (System.IO.Path.GetExtension(imageFileName).Contains("jpg"))
+                {
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = System.IO.Path.GetFileName(imageFileName),
+                        Value = System.IO.Path.GetFileName(imageFileName)
+                    });
+                }
+            }
+
+            return listItems;
+        }
 
         public int Id_manga { get => id_manga; set => id_manga = value; }
         public int Id_dessinateur { get => id_dessinateur; set => id_dessinateur = value; }

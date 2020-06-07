@@ -4,6 +4,9 @@ using WebmangaAspCore.Models.MesExceptions;
 using WebmangaAspCore.Models.Persistance;
 using WebmangaAspCore.Models.Metier;
 using WebmangaAspCore.Models.Utilitaires;
+using System.Collections;
+using MySql.Data.MySqlClient;
+using System.Data.Common;
 
 namespace WebmangaAspCore.Models.Dao
 {

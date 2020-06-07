@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Augmenter le prix d'un manga";
+    Layout = "~/Views/Shared/_LayoutManga.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Augmenter le prix d'un manga</title>
+</head>
+<body>
+    <form asp-action="AugmenterPrix">
+        
+        <div class="form-group">
+            <label for="name" class="control-label"></label>
+            <input name="prix" class="form-control" placeholder="en pourcentage %"/>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Augmenter" class="btn btn-primary" />
+        </div>
+    </form>
+</body>
+</html>

@@ -64,6 +64,8 @@ namespace WebmangaAspCore.Controllers
                 unM.Id_dessinateur = int.Parse(Request.Form["Id_dessinateur"].ToString());
                 unM.Id_scenariste = int.Parse(Request.Form["Id_scenariste"].ToString());
                 unM.Id_genre = int.Parse(Request.Form["Id_genre"].ToString());
+                unM.Couverture = Request.Form["Couverture"].ToString();
+
 
                 ServiceManga.UpdateManga(unM);
 

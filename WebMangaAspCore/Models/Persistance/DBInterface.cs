@@ -12,9 +12,9 @@ namespace WebmangaAspCore.Models.Persistance
     using MySql.Data.MySqlClient;
     using System.Data;
     using WebmangaAspCore.Models.MesExceptions;
+    using System.Collections;
 
-  
-        public class DBInterface
+    public class DBInterface
         {
             /// <summary>
             /// Exécution de la requête demandée en paramètre, req, 
@@ -87,5 +87,31 @@ namespace WebmangaAspCore.Models.Persistance
                     throw new MonException(uneException.Message, "Insertion", "SQL");
                 }
             }
+
+        public static void Procedure_Stockee(String procedure, ArrayList alParams)
+        {
+            MySqlConnection cnx = Connexion.getInstance().getConnexion();
+            int i, nbligne;
+            string[] alContenu;
+            MySqlCommand cmd = new MySqlCommand();
+            try
+            {
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.CommandText = procedure;
+                nbligne = alParams.Count;
+                for (i = 0; i < nbligne; i++)
+                {
+                    alContenu = alParams[i].ToString().Split(';');
+                    cmd.Parameters.AddWithValue(alContenu[0], alContenu[1]);
+                }
+                cmd.Connection = cnx;
+                cmd.ExecuteNonQuery();
+                cnx.Close();
+            }
+            catch (Exception me)
+            {
+                throw me;
+            }
         }
+    }
     }

@@ -57,7 +57,7 @@
         <div class="col-md-10">
             @if (WebmangaAspCore.Models.Metier.Utilisateur.IsAdmin())
             {
-                <input name="Couverture" type="text" class="form-control" value="@(@Model.Couverture)" id="Couverture" />
+                @Html.DropDownList("Couverture", WebmangaAspCore.Models.Metier.Manga.GetCouvertures(), null, new { @class = "form-control" })
             }
             else
             {
